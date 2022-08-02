@@ -37,3 +37,30 @@ INSERT INTO vehicles (make, model, year, price, owner_id)
     ('Lexus', 'ES350', 1998, 1599.99, 6),
     ('BMW', '300', 2012, 22999.99, 6),
     ('BMW', '700', 2015, 52999.99, 6);
+
+
+
+SELECT o.id, o.first_name, v.id, v.make, v.model, v.year, v.price, v.owner_id
+FROM vehicles v
+FULL OUTER JOIN owners o
+ON v.owner_id = o.id;
+
+
+// what goes after GROUP BY
+
+
+    SELECT o.first_name, COUNT(v.owner_id)
+    FROM vehicles AS v
+    JOIN owners AS o
+    ON o.id = v.owner_id
+    GROUP BY o.first_name
+    ORDER BY o.first_name;
+
+    SELECT o.first_name, ROUND(AVG(v.price),0), COUNT(v.owner_id)
+    FROM vehicles AS v
+    JOIN owners AS o
+    ON o.id = v.owner_id
+    GROUP BY o.first_name
+    HAVING AVG(v.price) > 10000
+    ORDER BY o.first_name DESC
+    ;
