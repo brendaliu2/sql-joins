@@ -53,7 +53,7 @@ ON v.owner_id = o.id;
     FROM vehicles AS v
     JOIN owners AS o
     ON o.id = v.owner_id
-    GROUP BY o.first_name
+    GROUP BY o.id
     ORDER BY o.first_name;
 
     SELECT o.first_name, ROUND(AVG(v.price),0), COUNT(v.owner_id)
